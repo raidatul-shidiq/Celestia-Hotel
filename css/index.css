@@ -149,7 +149,7 @@ body.dark-mode header nav ul li a {
 
 .menu-toggle {
     transition: all 0.3s ease;
-    display: none; 
+    display: none;
     background: transparent;
     border: none;
     padding: 0;
@@ -253,6 +253,20 @@ body.dark-mode .booking-form.locked button {
 }
 
 /* ==================================
+   PERBAIKAN TAMPILAN INPUT TANGGAL DI HP
+================================== */
+input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    min-height: 45px;
+    background-color: transparent;
+}
+
+input[type="date"]:invalid::-webkit-datetime-edit {
+    color: #94a3b8; 
+}
+
+/* ==================================
    Dropdown Profil Staf
 ================================== */
 .auth-container {
@@ -351,6 +365,7 @@ body.dark-mode .dropdown-item-logout:hover {
         opacity: 0;
         transform: translateY(-8px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -721,6 +736,7 @@ body.dark-mode .btn-close-modal:hover {
 }
 
 @media print {
+
     body,
     html {
         visibility: hidden !important;
@@ -1149,9 +1165,11 @@ body.dark-mode .btn-mobile-logout:hover {
     .booking-form {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .form-group.btn-group {
         grid-column: span 2;
     }
+
     .rooms-slider-container .room-card {
         flex: 0 0 calc((100% - 30px) / 2);
     }
@@ -1162,10 +1180,12 @@ body.dark-mode .btn-mobile-logout:hover {
         display: flex !important;
         transition: opacity 0.3s ease, visibility 0.3s ease;
     }
+
     .menu-toggle.active~.desktop-logo {
         opacity: 0 !important;
         visibility: hidden;
     }
+
     header .sidebar-logo {
         display: flex !important;
         flex-direction: column;
@@ -1178,10 +1198,12 @@ body.dark-mode .btn-mobile-logout:hover {
         width: 85%;
         order: 1;
     }
+
     header .sidebar-logo .logo-img {
         width: 55px;
         margin-bottom: 8px;
     }
+
     .menu-toggle {
         display: flex;
         flex-direction: column;
@@ -1189,6 +1211,7 @@ body.dark-mode .btn-mobile-logout:hover {
         gap: 5px;
         z-index: 1200;
     }
+
     .menu-toggle .bar {
         width: 24px;
         height: 2.5px;
@@ -1196,6 +1219,7 @@ body.dark-mode .btn-mobile-logout:hover {
         border-radius: 2px;
         transition: all 0.3s ease;
     }
+
     header nav {
         position: fixed;
         top: 0;
@@ -1214,9 +1238,11 @@ body.dark-mode .btn-mobile-logout:hover {
         box-shadow: 5px 0 25px rgba(0, 0, 0, 0.4);
         z-index: 1100;
     }
+
     header nav.active {
         left: 0;
     }
+
     header nav ul {
         display: flex;
         flex-direction: column;
@@ -1226,6 +1252,7 @@ body.dark-mode .btn-mobile-logout:hover {
         order: 2;
         margin-bottom: 40px;
     }
+
     .mobile-profile-box.active-box {
         display: block !important;
         width: 85%;
@@ -1239,21 +1266,27 @@ body.dark-mode .btn-mobile-logout:hover {
         color: #ffffff;
         order: 3;
     }
+
     .auth-container {
         display: none !important;
     }
+
     .header-left-actions {
         gap: 20px;
     }
+
     .rooms-slider-container .room-card {
         flex: 0 0 85%;
     }
+
     .slider-btn {
         display: none;
     }
+
     .featured-rooms-section {
         padding: 50px 5%;
     }
+
     .about-summary-container,
     .about-section {
         flex-direction: column;
@@ -1265,6 +1298,7 @@ body.dark-mode .btn-mobile-logout:hover {
         grid-template-columns: 1fr !important;
         gap: 15px !important;
     }
+
     .form-group.btn-group {
         grid-column: span 1 !important;
     }
@@ -1427,16 +1461,19 @@ body.dark-mode .footer-bottom {
     .footer-col {
         text-align: center;
     }
+
     .footer-col h4::after {
         left: 50%;
         transform: translateX(-50%);
     }
+
     .contact-item {
         flex-direction: column;
         align-items: center;
         text-align: center;
         gap: 6px;
     }
+
     .social-links {
         justify-content: center;
     }
@@ -1454,18 +1491,23 @@ body.dark-mode .footer-bottom {
     display: none;
 }
 
-@keyframes spin { 
-    0% { transform: rotate(0deg); } 
-    100% { transform: rotate(360deg); } 
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .loader {
-    border: 4px solid #e2e8f0; 
-    border-top: 4px solid #cfa25e; 
-    border-radius: 50%; 
+    border: 4px solid #e2e8f0;
+    border-top: 4px solid #cfa25e;
+    border-radius: 50%;
     width: 45px;
-    height: 45px; 
-    animation: spin 1s linear infinite; 
+    height: 45px;
+    animation: spin 1s linear infinite;
     margin: 20px auto;
 }
 
@@ -1521,7 +1563,7 @@ body.dark-mode .admin-simulation-warning {
 }
 
 .btn-admin-simulate {
-    background-color: #22c55e !important; 
+    background-color: #22c55e !important;
     border-color: #22c55e !important;
     width: 100%;
     box-shadow: 0 4px 15px rgba(34, 197, 94, 0.2);
