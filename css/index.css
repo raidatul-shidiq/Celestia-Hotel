@@ -429,6 +429,10 @@ body.dark-mode .hero-section {
     max-width: 1200px;
     border-top: 5px solid #cfa25e;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    
+    /* PERBAIKAN: Mengunci posisi agar dropdown stabil dan tidak keluar jalur di HP */
+    position: relative;
+    overflow: visible !important;
 }
 
 body.dark-mode .booking-container {
@@ -495,6 +499,10 @@ body.dark-mode .form-group label {
     background-color: #f8fafc;
     transition: all 0.3s ease;
     width: 100%;
+    
+    /* PERBAIKAN: Menjaga posisi elemen select tetap rapi dan berada di layer yang benar */
+    position: relative;
+    z-index: 5;
 }
 
 body.dark-mode .form-group input,
@@ -736,7 +744,6 @@ body.dark-mode .btn-close-modal:hover {
 }
 
 @media print {
-
     body,
     html {
         visibility: hidden !important;
@@ -1484,11 +1491,39 @@ body.dark-mode .footer-bottom {
 ======================================================= */
 #booking-auth-warning,
 #payment-modal,
-#qris-details,
-#bni-details,
 #confirmation-step,
 #receipt-step {
     display: none;
+}
+
+/* PERBAIKAN: Menjamin kotak rincian pembayaran (Cash, BNI, QRIS) tampil rapi dan responsif */
+#cash-details,
+#bni-details,
+#qris-details {
+    background-color: #f8f9fa;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    font-size: 12.5px;
+    color: #333333;
+}
+
+body.dark-mode #cash-details,
+body.dark-mode #bni-details,
+body.dark-mode #qris-details {
+    background-color: #0f172a;
+    border-color: #334155;
+    color: #f1f5f9;
+}
+
+.show-block-element {
+    display: block !important;
+}
+
+.hidden-element {
+    display: none !important;
 }
 
 @keyframes spin {

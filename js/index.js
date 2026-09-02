@@ -359,24 +359,18 @@ const qrisDetails = document.getElementById('qris-details');
 if (paymentRadios.length > 0) {
     paymentRadios.forEach(radio => {
         radio.addEventListener('change', function() {
-            // Sembunyikan semua kotak rincian dulu menggunakan Class CSS (bebas inline CSS)
-            [cashDetails, bniDetails, qrisDetails].forEach(el => {
-                if (el) {
-                    el.classList.add('hidden-element');
-                    el.classList.remove('show-block-element');
-                }
-            });
+            // Sembunyikan semua kotak rincian secara langsung
+            if (cashDetails) cashDetails.style.display = 'none';
+            if (bniDetails) bniDetails.style.display = 'none';
+            if (qrisDetails) qrisDetails.style.display = 'none';
 
             // Munculkan hanya opsi yang sedang dicentang user
             if (this.value === 'Uang Tunai (Cash)' && cashDetails) {
-                cashDetails.classList.add('show-block-element');
-                cashDetails.classList.remove('hidden-element');
+                cashDetails.style.display = 'block';
             } else if (this.value === 'Transfer Bank BNI' && bniDetails) {
-                bniDetails.classList.add('show-block-element');
-                bniDetails.classList.remove('hidden-element');
+                bniDetails.style.display = 'block';
             } else if (this.value === 'QRIS / E-Wallet' && qrisDetails) {
-                qrisDetails.classList.add('show-block-element');
-                qrisDetails.classList.remove('hidden-element');
+                qrisDetails.style.display = 'block';
             }
         });
     });

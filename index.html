@@ -12,7 +12,6 @@
   <body>
     <!-- ==================== HEADER (NAVIGASI ATAS) ==================== -->
     <header id="navbar">
-      
       <!-- Bagian Kiri: Tombol Hamburger (HP) & Logo (Desktop) -->
       <div class="header-left-actions">
         <div class="menu-toggle" id="mobile-menu">
@@ -32,7 +31,7 @@
           <img src="Assets/logo.png" alt="Celestia Logo" class="logo-img" />
           <span>Celestia Palace</span>
         </div>
-        
+
         <!-- Wadah profil khusus layar HP (diisi otomatis oleh JS) -->
         <div id="mobile-profile-container" class="mobile-profile-box"></div>
 
@@ -48,7 +47,7 @@
       <div class="header-right-actions">
         <div class="auth-container">
           <button id="auth-btn" class="btn-book">Login</button>
-          
+
           <!-- Dropdown Profil Staf (Muncul saat nama diklik) -->
           <div id="profile-dropdown" class="profile-dropdown-menu">
             <div class="dropdown-header">
@@ -100,7 +99,7 @@
               <label for="phone">No HP / WhatsApp</label>
               <input type="tel" id="phone" placeholder="08xxxxxxxxxx" required />
             </div>
-            
+
             <!-- Kalender Check-in & Out (Masa lalu diblokir otomatis via JS) -->
             <div class="form-group">
               <label for="check-in">Check In</label>
@@ -110,7 +109,7 @@
               <label for="check-out">Check Out</label>
               <input type="date" id="check-out" required />
             </div>
-            
+
             <!-- Pilihan Kamar (Diambil dari API JSON via JS) -->
             <div class="form-group">
               <label for="rooms">Pilih Kamar</label>
@@ -125,7 +124,7 @@
                 <option value="" disabled selected>-- Pilih Kamar Dulu --</option>
               </select>
             </div>
-            
+
             <div class="form-group">
               <label for="guests">Dewasa</label>
               <input type="number" id="guests" min="1" value="1" required />
@@ -180,19 +179,17 @@
     <!-- ==================== MODAL POP-UP (PEMBAYARAN) ==================== -->
     <div id="payment-modal" class="modal-overlay">
       <div class="modal-content">
-        
         <!-- STEP 1: Pilihan Metode Pembayaran (Radio Button) -->
         <div id="payment-step">
           <h2>Pilih Metode Pembayaran</h2>
           <p>Silakan pilih metode pembayaran untuk melanjutkan reservasi:</p>
           <div class="payment-options">
-            
             <!-- Cash -->
             <label>
               <input type="radio" name="payment" value="Uang Tunai (Cash)" checked />
               Uang Tunai (Cash)
             </label>
-            <div id="cash-details" class="payment-detail-box show-block-element">
+            <div id="cash-details" class="payment-detail-box">
               <p>Silakan lakukan pelunasan langsung di meja resepsionis saat Anda tiba di hotel (Check-in).</p>
             </div>
 
@@ -201,20 +198,19 @@
               <input type="radio" name="payment" value="Transfer Bank BNI" />
               Transfer Bank BNI
             </label>
-            <div id="bni-details" class="payment-detail-box hidden-element">
+            <div id="bni-details" class="payment-detail-box" style="display: none">
               <p><strong>No. Rekening BNI:</strong> 1234-5678-9010 (a.n. PT Celestia Hotel)</p>
             </div>
-            
+
             <!-- QRIS / E-Wallet -->
             <label>
               <input type="radio" name="payment" value="QRIS / E-Wallet" />
               QRIS / E-Wallet
             </label>
-            <div id="qris-details" class="payment-detail-box hidden-element">
+            <div id="qris-details" class="payment-detail-box" style="display: none">
               <p>Scan QR di bawah ini menggunakan GoPay, OVO, Dana, atau BNI Mobile:</p>
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=CelestiaHotelPaymentQRIS" alt="QRIS Code" class="qris-img" />
             </div>
-
           </div>
           <button id="btn-pay" class="btn-confirm-pay">Pesan Sekarang</button>
         </div>
@@ -223,12 +219,12 @@
         <div id="confirmation-step" class="confirmation-step-container">
           <h3 class="confirmation-title">Menunggu Konfirmasi...</h3>
           <p id="pending-message" class="confirmation-message">Sistem sedang memproses pesanan Anda...</p>
-          
+
           <div class="loader"></div>
-          
+
           <div class="admin-simulation-box">
-              <p class="admin-simulation-warning">*Simulasi: Tombol ini di dunia nyata hanya ditekan oleh Resepsionis/Admin untuk ACC Transaksi</p>
-              <button type="button" id="btn-admin-confirm" class="btn-confirm-pay btn-admin-simulate">Konfirmasi Lunas (Simulasi Admin)</button>
+            <p class="admin-simulation-warning">*Simulasi: Tombol ini di dunia nyata hanya ditekan oleh Resepsionis/Admin untuk ACC Transaksi</p>
+            <button type="button" id="btn-admin-confirm" class="btn-confirm-pay btn-admin-simulate">Konfirmasi Lunas (Simulasi Admin)</button>
           </div>
         </div>
 
@@ -238,7 +234,8 @@
             <h2>Celestia Hotel</h2>
             <p>Struk Resmi Pemesanan Kamar</p>
           </div>
-          <div id="receipt-details"></div> <!-- Diisi oleh JS -->
+          <div id="receipt-details"></div>
+          <!-- Diisi oleh JS -->
           <div class="receipt-actions">
             <!-- Tombol untuk memanggil fitur cetak (print) browser -->
             <button id="btn-print" class="btn-print">Cetak Struk</button>
@@ -246,14 +243,12 @@
             <button id="btn-close" class="btn-close-modal">Tutup</button>
           </div>
         </div>
-
       </div>
     </div>
 
-   <!-- ==================== FOOTER ==================== -->
+    <!-- ==================== FOOTER ==================== -->
     <footer class="main-footer">
       <div class="footer-container">
-        
         <!-- Info Brand & Tautan Sosial Media -->
         <div class="footer-col brand-col">
           <h3 class="footer-logo">Celestia Palace</h3>
@@ -291,7 +286,6 @@
             <p>info@celestiapalace.com</p>
           </div>
         </div>
-
       </div>
 
       <!-- Hak Cipta -->
