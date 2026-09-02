@@ -359,12 +359,12 @@ const qrisDetails = document.getElementById('qris-details');
 if (paymentRadios.length > 0) {
     paymentRadios.forEach(radio => {
         radio.addEventListener('change', function() {
-            // Sembunyikan semua kotak rincian secara langsung
+            // Sembunyikan semua kotak rincian dulu secara langsung
             if (cashDetails) cashDetails.style.display = 'none';
             if (bniDetails) bniDetails.style.display = 'none';
             if (qrisDetails) qrisDetails.style.display = 'none';
 
-            // Munculkan hanya opsi yang sedang dicentang user
+            // Munculkan rincian yang sesuai dengan nilai radio yang dicentang
             if (this.value === 'Uang Tunai (Cash)' && cashDetails) {
                 cashDetails.style.display = 'block';
             } else if (this.value === 'Transfer Bank BNI' && bniDetails) {
