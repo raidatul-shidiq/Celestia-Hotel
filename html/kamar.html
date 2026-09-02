@@ -50,7 +50,6 @@
 
       <!-- 3. BAGIAN KANAN: Tombol Tema & Login -->
       <div class="header-right-actions">
-        
         <div class="auth-container">
           <button id="auth-btn" class="btn-book">Login</button>
           <div id="profile-dropdown" class="profile-dropdown-menu">
@@ -81,7 +80,6 @@
 
     <footer class="main-footer">
       <div class="footer-container">
-        
         <!-- Kolom 1: Info Brand & Sosial Media -->
         <div class="footer-col brand-col">
           <h3 class="footer-logo">Celestia Palace</h3>
@@ -93,15 +91,17 @@
         </div>
 
         <!-- Kolom 2: Tautan Cepat -->
-        <div class="footer-col links-col">
+        <section class="footer-col links-col">
           <h4>Tautan Cepat</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="html/about.html">About Us</a></li>
-            <li><a href="html/kamar.html">Rooms</a></li>
-            <li><a href="html/dataPesanan.html">Data Pesanan</a></li>
-          </ul>
-        </div>
+          <nav aria-label="Navigasi Footer">
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="kamar.html">Rooms</a></li>
+              <li><a href="dataPesanan.html">Data Pesanan</a></li>
+            </ul>
+          </nav>
+        </section>
 
         <!-- Kolom 3: Kontak Hotel -->
         <div class="footer-col contact-col">
@@ -119,7 +119,6 @@
             <p>info@celestiapalace.com</p>
           </div>
         </div>
-
       </div>
 
       <!-- Bagian Hak Cipta -->
@@ -127,8 +126,6 @@
         <p>&copy; 2026 Celestia Palace. Hak Cipta Dilindungi.</p>
       </div>
     </footer>
-
-    
 
     <!-- Memanggil index.js untuk fungsi navbar & kamar.js untuk API -->
     <script src="../js/index.js"></script>

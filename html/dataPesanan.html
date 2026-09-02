@@ -67,7 +67,7 @@
           <input type="text" id="searchInput" placeholder="Cari berdasarkan Nama atau No HP..." />
         </div>
       </div>
-      
+
       <div id="bookingsContainer" class="bookings-grid"></div>
     </main>
 
@@ -92,14 +92,12 @@
             <p><strong>🛏️ Kamar</strong> : <span class="booking-room"></span></p>
             <p><strong>📅 Jadwal</strong> : <span class="booking-schedule"></span></p>
             <p><strong>💰 Total</strong> : <span class="booking-total"></span></p>
-            
+
             <!-- Sisa Tagihan (Tanpa Inline CSS) -->
-            <p class="unpaid-wrapper hidden-element">
-              <strong class="unpaid-label">⚠️ Kurang</strong> : <span class="booking-unpaid"></span>
-            </p>
+            <p class="unpaid-wrapper hidden-element"><strong class="unpaid-label">⚠️ Kurang</strong> : <span class="booking-unpaid"></span></p>
           </div>
         </div>
-        
+
         <div class="card-actions">
           <button class="btn-extend">📝 Perpanjang</button>
           <button class="btn-delete">🗑️ Check-out</button>
@@ -112,47 +110,45 @@
       <div class="modal-box checkout-modal-wide">
         <div class="modal-icon">🚪</div>
         <h3>Konfirmasi Check-out</h3>
-        
+
         <!-- Peringatan Tagihan & Form Pelunasan (Dibagi 2 Kolom) -->
         <div id="checkoutBillWarning" class="checkout-warning-box hidden-element">
-            
-            <!-- Kolom Kiri: Info Tagihan -->
-            <div class="warning-info-col">
-                <strong>⚠️ Perhatian!</strong>
-                <p class="warning-desc">Tamu ini memiliki sisa tagihan perpanjangan sebesar:</p>
-                <span id="checkoutUnpaidAmount" class="unpaid-amount-text"></span>
-                <p class="checkout-instruction">Pilih metode pelunasan:</p>
-            </div>
+          <!-- Kolom Kiri: Info Tagihan -->
+          <div class="warning-info-col">
+            <strong>⚠️ Perhatian!</strong>
+            <p class="warning-desc">Tamu ini memiliki sisa tagihan perpanjangan sebesar:</p>
+            <span id="checkoutUnpaidAmount" class="unpaid-amount-text"></span>
+            <p class="checkout-instruction">Pilih metode pelunasan:</p>
+          </div>
 
-            <!-- Kolom Kanan: Pilihan Pembayaran -->
-            <div class="warning-payment-col">
-                <div class="payment-options checkout-payment-options">
-                  <label>
-                    <input type="radio" name="settlementPayment" value="Uang Tunai (Cash)" checked />
-                    Uang Tunai (Cash)
-                  </label>
-                  <div id="checkout-cash-details" class="payment-detail-box show-block-element">
-                    <p>Terima uang tunai di meja resepsionis.</p>
-                  </div>
-                  
-                  <label>
-                    <input type="radio" name="settlementPayment" value="Transfer Bank BNI" />
-                    Transfer Bank BNI
-                  </label>
-                  <div id="checkout-bni-details" class="payment-detail-box hidden-element">
-                    <p><strong>BNI:</strong> 1234-5678-9010</p>
-                  </div>
-                  
-                  <label>
-                    <input type="radio" name="settlementPayment" value="QRIS / E-Wallet" />
-                    QRIS / E-Wallet
-                  </label>
-                  <div id="checkout-qris-details" class="payment-detail-box hidden-element">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=CelestiaHotelPaymentQRIS" alt="QRIS Code" class="qris-img" />
-                  </div>
-                </div>
+          <!-- Kolom Kanan: Pilihan Pembayaran -->
+          <div class="warning-payment-col">
+            <div class="payment-options checkout-payment-options">
+              <label>
+                <input type="radio" name="settlementPayment" value="Uang Tunai (Cash)" checked />
+                Uang Tunai (Cash)
+              </label>
+              <div id="checkout-cash-details" class="payment-detail-box show-block-element">
+                <p>Terima uang tunai di meja resepsionis.</p>
+              </div>
+
+              <label>
+                <input type="radio" name="settlementPayment" value="Transfer Bank BNI" />
+                Transfer Bank BNI
+              </label>
+              <div id="checkout-bni-details" class="payment-detail-box hidden-element">
+                <p><strong>BNI:</strong> 1234-5678-9010</p>
+              </div>
+
+              <label>
+                <input type="radio" name="settlementPayment" value="QRIS / E-Wallet" />
+                QRIS / E-Wallet
+              </label>
+              <div id="checkout-qris-details" class="payment-detail-box hidden-element">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=CelestiaHotelPaymentQRIS" alt="QRIS Code" class="qris-img" />
+              </div>
             </div>
-            
+          </div>
         </div>
 
         <p class="delete-confirm-text">Apakah Anda yakin tamu ini sudah keluar? Data pesanan akan dihapus secara permanen dari sistem.</p>
@@ -168,10 +164,10 @@
       <div class="modal-box">
         <div class="modal-icon text-success">✅</div>
         <h3 id="successModalTitle">Pelunasan Berhasil!</h3>
-        
+
         <!-- Pesan akan diisi menggunakan textContent dari JS -->
         <p id="successModalMessage" class="success-message-text"></p>
-        
+
         <div class="modal-actions">
           <button id="btnSuccessClose" class="btn-success-green btn-full-width">Tutup & Selesai</button>
         </div>
@@ -184,7 +180,7 @@
         <div class="modal-icon">📅</div>
         <h3>Perpanjang Kamar</h3>
         <p>Pilih tanggal check-out baru untuk tamu ini.</p>
-        
+
         <!-- Form Group (Tanpa Inline CSS) -->
         <div class="form-group extend-form-group">
           <label for="newCheckOutDate" class="extend-label">Check-out Baru:</label>
@@ -201,7 +197,6 @@
     <!-- ==================== FOOTER ==================== -->
     <footer class="main-footer">
       <div class="footer-container">
-        
         <section class="footer-col brand-col">
           <h3 class="footer-logo">Celestia Palace</h3>
           <p>Menawarkan pengalaman menginap mewah dengan kenyamanan dan pelayanan eksklusif yang tak terlupakan di pusat kota.</p>
@@ -216,7 +211,7 @@
           <nav aria-label="Navigasi Footer">
             <ul>
               <li><a href="../index.html">Home</a></li>
-              <li><a href="about.html">About Us</a></li>
+              <li><a href="about.html">About</a></li>
               <li><a href="kamar.html">Rooms</a></li>
               <li><a href="dataPesanan.html">Data Pesanan</a></li>
             </ul>
@@ -240,7 +235,6 @@
             </div>
           </address>
         </section>
-
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Celestia Palace. Hak Cipta Dilindungi.</p>
