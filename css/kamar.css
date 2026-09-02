@@ -1,0 +1,238 @@
+/* ==================================
+   ROOMS SECTION (GRID & KARTU KAMAR AESTHETIC)
+================================== */
+.page-content {
+    background-color: #fafbfc; 
+    padding-top: 100px; 
+    padding-bottom: 80px;
+    
+    /* Transisi Halus: Jika background berubah (misal saat pindah ke Dark Mode),
+       perubahannya tidak mendadak, tapi memudar perlahan selama 0.3 detik */
+    transition: background-color 0.3s ease;
+}
+
+.room-section {
+    padding: 20px 8%;
+}
+
+.room-header {
+    text-align: center;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.room-header h2 {
+    font-size: 38px;
+    font-weight: 600;
+    color: #0f4c81;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.room-header p {
+    font-size: 15px;
+    color: #666;
+    font-weight: 300;
+    transition: color 0.3s ease;
+}
+
+/* Layout Grid Kartu Kamar */
+.rooms-grid {
+    display: grid;
+    
+    /* Grid Responsif Otomatis: 
+       auto-fit: Akan terus mengisi kolom jika layar masih cukup luas.
+       minmax(320px, 1fr): Lebar kartu minimal 320px, namun jika layar lebih lebar,
+       kartu akan melebar (1fr/fraction) untuk memenuhi ruang kosong secara seimbang. */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+}
+
+/* Desain Kartu Kamar */
+.room-card {
+    background: #ffffff;
+    border-radius: 16px;
+    
+    /* overflow: hidden sangat penting di sini. 
+       Tanpa ini, gambar kamar yang berbentuk kotak siku akan menonjol 
+       keluar menutupi sudut kartu yang sudah kita buat melengkung (border-radius) */
+    overflow: hidden; 
+    
+    box-shadow: 0 10px 30px rgba(15, 76, 129, 0.06);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    
+    /* Animasi pergerakan saat kartu disorot mouse (hover).
+       cubic-bezier membuat gerakan tidak datar (linear), 
+       melainkan memiliki efek "karet" (lambat di awal, cepat di tengah, melambat di akhir) */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Efek Melayang Halus saat Hover */
+.room-card:hover {
+    transform: translateY(-8px); /* Kartu terangkat 8px ke atas seolah melayang */
+    box-shadow: 0 20px 40px rgba(15, 76, 129, 0.12); /* Bayangan membesar agar efek 3D lebih kuat */
+    border-color: rgba(207, 162, 94, 0.4);
+}
+
+/* Gambar Kamar dengan Efek Zoom Halus */
+.room-image-wrapper {
+    overflow: hidden; /* Memotong (clip) gambar yang membesar saat zoom agar tidak meleber keluar dari kotak gambarnya */
+    position: relative;
+    height: 240px;
+}
+
+.room-image {
+    width: 100%;
+    height: 100%;
+    
+    /* object-fit: cover berfungsi seperti bingkai foto pintar.
+       Ini memaksa gambar yang proporsinya tidak sama untuk tetap memenuhi 
+       seluruh kotak tinggi x lebar tanpa terlihat peyang/gepeng */
+    object-fit: cover; 
+    
+    transition: transform 0.6s ease;
+}
+
+/* Saat kartu disentuh, gambar di dalamnya membesar 5% (1.05 kali lipat) */
+.room-card:hover .room-image {
+    transform: scale(1.05);
+}
+
+/* Bagian Teks Informasi Kamar */
+.room-info {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    
+    /* flex-grow: 1 memaksa area informasi teks ini untuk mengisi 
+       seluruh sisa ruang vertikal yang kosong. Ini membuat semua tombol 
+       di bagian bawah kartu rata sejajar meski panjang teks deskripsinya berbeda-beda */
+    flex-grow: 1; 
+}
+
+.room-info h3 {
+    font-size: 20px;
+    color: #0f4c81;
+    font-weight: 600;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+/* Harga dengan Aksen Emas */
+.room-price {
+    font-size: 17px;
+    color: #cfa25e; 
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+}
+
+.room-desc {
+    font-size: 13.5px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    flex-grow: 1; /* Mendorong tombol dan fasilitas ke dasar kartu */
+    transition: color 0.3s ease;
+}
+
+/* Kotak Fasilitas / Amenities yang Rapi */
+.room-amenities {
+    font-size: 12.5px;
+    color: #475569;
+    background-color: #f8fafc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border-left: 3px solid #0f4c81;
+    margin-bottom: 20px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+/* Tambahan Tombol Aksi Kecil */
+.btn-room-detail {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #0f4c81;
+    
+    /* !important mengunci warna putih agar tidak ditimpa oleh aturan <a> global browser */
+    color: #ffffff !important; 
+    padding: 11px;
+    border-radius: 8px;
+    text-decoration: none !important; /* Menghilangkan garis bawah default pada link HTML */
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-room-detail:hover {
+    background-color: #cfa25e; 
+}
+
+/* ==================================
+   DARK MODE KHUSUS HALAMAN KAMAR
+================================== */
+/* 1. Latar Belakang Halaman Pembungkus */
+body.dark-mode .page-content {
+    background-color: #0f172a;
+}
+
+/* 2. Teks Header Kamar */
+body.dark-mode .room-header h2,
+body.dark-mode .room-info h3 {
+    color: #60a5fa;
+}
+
+body.dark-mode .room-header p,
+body.dark-mode .room-desc {
+    color: #94a3b8;
+}
+
+/* 3. Latar Belakang Kartu Kamar */
+body.dark-mode .room-card {
+    background-color: #1e293b;
+    border-color: #334155;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Efek Hover Kartu di Dark Mode */
+body.dark-mode .room-card:hover {
+    border-color: #cfa25e;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* 4. Kotak Fasilitas */
+body.dark-mode .room-amenities {
+    background-color: #0f172a;
+    color: #f1f5f9;
+    border-left: 3px solid #60a5fa;
+    border-color: #334155;
+}
+
+/* ==================================
+   RESPONSIF UNTUK HP
+================================== */
+@media (max-width: 768px) {
+    .page-content {
+        padding-top: 80px;
+    }
+    .room-section {
+        padding: 15px 5%;
+    }
+    .room-header h2 {
+        font-size: 28px;
+    }
+    .rooms-grid {
+        /* Memaksa grid kembali menjadi 1 kolom (atas-bawah) saat dibuka di layar HP yang sempit */
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Celestia Palace Hotel - About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="icon" href="../Assets/logo.png" type="image/png" />
+
+    <!-- Memanggil CSS utama -->
+    <link rel="stylesheet" href="/css/index.css" />
+    <!-- Memanggil CSS tambahan khusus halaman about -->
+    <link rel="stylesheet" href="../css/about.css" />
+
+    <link rel="icon" href="Assets/logo.png" type="image/png" />
+  </head>
+
+  <body>
+    <!-- Header menggunakan class solid-bg agar langsung biru -->
+    <header id="navbar" class="solid-bg">
+      <!-- 1. BAGIAN KIRI: Hamburger & Logo Desktop -->
+      <div class="header-left-actions">
+        <!-- Tombol Hamburger (Hanya tampil di HP) -->
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+
+        <!-- Logo Utama (Tampil di Laptop, Hilang di HP) -->
+        <div class="logo desktop-logo">
+          <img src="../Assets/logo.png" alt="Celestia Logo" class="logo-img" />
+          <span>Celestia Palace</span>
+        </div>
+      </div>
+
+      <!-- 2. BAGIAN TENGAH: Menu Navigasi & Sidebar -->
+      <nav>
+        <!-- Logo Sidebar (Hanya tampil di dalam Sidebar HP) -->
+        <div class="logo sidebar-logo">
+          <img src="../Assets/logo.png" alt="Celestia Logo" class="logo-img" />
+          <span>Celestia Palace</span>
+        </div>
+
+        <div id="mobile-profile-container" class="mobile-profile-box"></div>
+
+        <ul class="nav-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="kamar.html">Rooms</a></li>
+          <li><a href="dataPesanan.html">Data Pesanan</a></li>
+        </ul>
+      </nav>
+
+      <!-- 3. BAGIAN KANAN: Tombol Tema & Login -->
+      <div class="header-right-actions">
+        
+        <div class="auth-container">
+          <button id="auth-btn" class="btn-book">Login</button>
+          <div id="profile-dropdown" class="profile-dropdown-menu">
+            <div class="dropdown-header">
+              <span id="dropdown-staff-name" class="dropdown-name">Staf Hotel</span>
+              <span class="dropdown-role">Administrator</span>
+            </div>
+            <div class="dropdown-divider"></div>
+            <button id="btn-logout" class="dropdown-item-logout">Keluar</button>
+          </div>
+        </div>
+        <button id="theme-toggle" class="btn-theme-toggle" title="Ubah Tema" aria-label="Toggle Dark Mode">🌙</button>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <!-- Section Utama About -->
+      <section class="about-section">
+        <!-- Menggunakan gambar hotel mewah berkualitas tinggi -->
+        <img src="https://greenforestresortbandung.com/wp-content/uploads/2024/12/Royal-Suite.jpeg" alt="Celestia Hotel Luxury Building" class="about-image" />
+        <div class="about-text">
+          <span class="subtitle">SPRING MOMENTS</span>
+          <h2>Experience the Celestia Difference: A Blend of Elegance and Comfort.</h2>
+          <p>
+            Celestia Hotel hadir untuk memberikan pengalaman menginap kelas dunia. Dengan memadukan arsitektur modern yang megah dan kenyamanan tingkat tinggi,
+            kami memastikan setiap detik liburan atau perjalanan bisnis Anda menjadi momen yang tak terlupakan.
+          </p>
+          <p>Didukung oleh staf profesional yang siap melayani 24 jam serta fasilitas bintang lima, Celestia adalah rumah kedua yang sempurna bagi Anda.</p>
+        </div>
+      </section>
+
+      <!-- Section Tambahan Keunggulan (Grid) -->
+      <section class="features-section">
+        <div class="feature-card">
+          <h3>Fasilitas Bintang 5</h3>
+          <p>Nikmati kolam renang infinity, spa mewah, dan pusat kebugaran lengkap selama Anda menginap.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Kuliner Premium</h3>
+          <p>Restoran internal kami menyajikan hidangan lezat kelas dunia yang dimasak oleh chef profesional.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Lokasi Strategis</h3>
+          <p>Berada di jantung kota, memudahkan akses Anda ke pusat perbelanjaan dan tempat wisata utama.</p>
+        </div>
+      </section>
+
+      
+    </main>
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="main-footer">
+      <div class="footer-container">
+        
+        <!-- Kolom 1: Info Brand & Sosial Media -->
+        <div class="footer-col brand-col">
+          <h3 class="footer-logo">Celestia Palace</h3>
+          <p>Menawarkan pengalaman menginap mewah dengan kenyamanan dan pelayanan eksklusif yang tak terlupakan di pusat kota.</p>
+          <div class="social-links">
+            <a href="https://github.com/raidatul-shidiq" aria-label="GitHub" title="GitHub">GH</a>
+            <a href="https://www.instagram.com/raidatul_shidiq/" aria-label="Instagram" title="Instagram">IG</a>
+          </div>
+        </div>
+
+        <!-- Kolom 2: Tautan Cepat -->
+        <div class="footer-col links-col">
+          <h4>Tautan Cepat</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="html/about.html">About Us</a></li>
+            <li><a href="html/kamar.html">Rooms</a></li>
+            <li><a href="html/dataPesanan.html">Data Pesanan</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3: Kontak Hotel -->
+        <div class="footer-col contact-col">
+          <h4>Hubungi Kami</h4>
+          <div class="contact-item">
+            <span>📍</span>
+            <p>Jl. Harmoni Alam No. 88,<br />Bandung, Jawa Barat</p>
+          </div>
+          <div class="contact-item">
+            <span>📞</span>
+            <p>+62 22 1234 5678</p>
+          </div>
+          <div class="contact-item">
+            <span>✉️</span>
+            <p>info@celestiapalace.com</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bagian Hak Cipta -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 Celestia Palace. Hak Cipta Dilindungi.</p>
+      </div>
+    </footer>
+
+    <script src="/js/index.js"></script>
+  </body>
+</html>

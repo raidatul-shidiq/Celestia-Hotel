@@ -1,0 +1,421 @@
+/* ==================================
+   LOGIN RESEPSIONIS - CELESTIA PALACE
+   Split Layout: Gambar Kiri | Form Kanan
+================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    background: #0a0808;
+    overflow: hidden; /* Mencegah scroll bar muncul jika konten meluap */
+}
+
+/* ==================================
+   WRAPPER UTAMA (Split 50:50)
+================================== */
+.login-wrapper {
+    display: flex; /* Mengubah kontainer menjadi baris (horizontal) */
+    height: 100vh; /* Tinggi menyesuaikan 100% tinggi layar viewport */
+    width: 100%;
+}
+
+/* ==================================
+   BAGIAN KIRI - GAMBAR HOTEL
+================================== */
+.login-hero {
+    flex: 1; /* Memaksa elemen ini mengambil porsi ruang yang tersisa (50%) */
+    position: relative; /* Menjadi patokan letak untuk elemen 'absolute' di dalamnya */
+    
+    /* Memasang gambar latar agar selalu di tengah dan menutupi seluruh kotak tanpa melar */
+    background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Mendorong konten ke ujung atas dan ujung bawah */
+    padding: 50px 40px;
+    overflow: hidden;
+}
+
+/* Overlay Gradien Elegan */
+.hero-overlay {
+    position: absolute; /* Melayang di atas gambar latar */
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    
+    /* Gradasi warna dari gelap (70%) memudar jadi agak transparan (10%) */
+    background: linear-gradient(135deg, rgba(10, 8, 8, 0.7) 0%, rgba(10, 8, 8, 0.3) 50%, rgba(10, 8, 8, 0.1) 100%);
+    z-index: 1; /* Menentukan tumpukan, angka 1 berarti di atas background dasar */
+}
+
+/* Dekorasi Ornamen (Pseudo-elements) 
+   ::before dan ::after digunakan untuk membuat elemen fiktif dari CSS 
+   tanpa perlu menambah tag HTML baru */
+.login-hero::before {
+    content: '✦';
+    position: absolute;
+    top: 30px; right: 40px;
+    font-size: 28px;
+    color: #cfa25e;
+    opacity: 0.4;
+    z-index: 2; /* Ditaruh di atas gradien overlay */
+}
+
+.login-hero::after {
+    content: '✦';
+    position: absolute;
+    bottom: 30px; right: 40px;
+    font-size: 28px;
+    color: #cfa25e;
+    opacity: 0.4;
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Teks harus berada di layer paling atas agar bisa dibaca */
+    color: #ffffff;
+    margin-top: auto;
+    margin-bottom: 60px;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(207, 162, 94, 0.2);
+    border: 1px solid rgba(207, 162, 94, 0.4);
+    color: #cfa25e;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    
+    /* Efek Glassmorphism: Memberikan efek kaca buram pada latar belakang elemen */
+    backdrop-filter: blur(10px); 
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    
+    /* Fluid Typography: Ukuran font akan membesar/mengecil otomatis mengikuti lebar layar. 
+       (Minimal 2.5rem, idealnya 4.5vw, Maksimal 4.5rem) */
+    font-size: clamp(2.5rem, 4.5vw, 4.5rem); 
+    
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Memberikan bayangan agar teks menonjol dari gambar */
+}
+
+.hero-content h1 span {
+    color: #cfa25e;
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 1.2vw, 1.3rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+.hero-divider {
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, #cfa25e, transparent);
+    margin-bottom: 25px;
+    border-radius: 2px;
+}
+
+.hero-features {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap; /* Mengizinkan item turun ke baris baru jika ruang tidak cukup */
+}
+
+.hero-features span {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 6px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px); /* Efek kaca buram */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hero-credit {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+/* ==================================
+   BAGIAN KANAN - FORM LOGIN
+================================== */
+.login-form-wrapper {
+    flex: 1; /* Mengambil sisa porsi layar (50% kanan) */
+    background: linear-gradient(145deg, #fcf9f7 0%, #f5f0ec 100%);
+    display: flex;
+    align-items: center; /* Memosisikan form pas di tengah vertikal */
+    justify-content: center; /* Memosisikan form pas di tengah horizontal */
+    padding: 40px;
+    position: relative;
+}
+
+/* Dekorasi background sisi form */
+.login-form-wrapper::before,
+.login-form-wrapper::after {
+    content: '✦';
+    position: absolute;
+    font-size: 40px;
+    color: #cfa25e;
+    opacity: 0.08;
+}
+
+.login-form-wrapper::before { top: 40px; right: 50px; }
+.login-form-wrapper::after { bottom: 40px; left: 50px; }
+
+.login-form-container {
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header Form */
+.form-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.form-icon {
+    font-size: 38px;
+    margin-bottom: 10px;
+    display: inline-block;
+    animation: floatIcon 3s ease-in-out infinite; /* Mengaktifkan animasi melayang secara terus-menerus */
+}
+
+/* Keyframes untuk membuat efek ikon melayang naik-turun */
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.form-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1a1210;
+    margin-bottom: 4px;
+}
+
+.form-header p {
+    font-size: 12px;
+    color: #a08a7a;
+    letter-spacing: 3px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.form-divider {
+    width: 50px; height: 3px;
+    background: linear-gradient(90deg, #cfa25e, #e8d5b8);
+    margin: 14px auto 0;
+    border-radius: 2px;
+}
+
+/* Form Groups */
+.login-form .form-group {
+    margin-bottom: 22px;
+}
+
+.login-form .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2c241e;
+    margin-bottom: 7px;
+    letter-spacing: 0.3px;
+}
+
+.login-form .form-group input {
+    width: 100%;
+    padding: 13px 18px;
+    border: 2px solid #e8e0da;
+    border-radius: 12px;
+    font-size: 14px;
+    background: #ffffff;
+    color: #1a1210;
+    outline: none; /* Menghilangkan garis biru bawaan browser saat diklik */
+    transition: all 0.3s ease; /* Transisi halus saat warna border berubah */
+}
+
+/* Trik box-shadow untuk membuat efek cahaya (glow) saat input sedang diketik (focus) */
+.login-form .form-group input:focus {
+    border-color: #cfa25e;
+    box-shadow: 0 0 0 4px rgba(207, 162, 94, 0.12);
+}
+
+/* Password Wrapper */
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 50px; /* Menyediakan ruang agar teks tidak menabrak ikon mata */
+}
+
+.btn-toggle-pass {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%); /* Trik agar ikon mata benar-benar pas di tengah vertikal */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #b8aaa0;
+    padding: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-toggle-pass:hover {
+    color: #cfa25e;
+}
+
+/* Tombol Login */
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #cfa25e, #b88a48);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden; /* Mencegah efek kilau keluar dari batas tombol */
+}
+
+/* Efek kilauan cahaya bergerak (shine effect) pada tombol */
+.btn-login::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left 0.5s ease;
+}
+
+/* Menggerakkan kilauan cahaya saat tombol disorot mouse */
+.btn-login:hover::before {
+    left: 100%;
+}
+
+.btn-login:hover {
+    transform: translateY(-3px); /* Efek tombol terangkat ke atas */
+    box-shadow: 0 12px 30px rgba(207, 162, 94, 0.35); /* Menambah bayangan agar terkesan 3D */
+}
+
+.btn-login:active {
+    transform: translateY(0); /* Efek tombol ditekan ke bawah */
+}
+
+/* ==================================
+   CUSTOM MODAL POP-UP
+================================== */
+.custom-modal-overlay {
+    position: fixed; /* Mengunci posisi agar tetap terlihat walau di-scroll */
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(10, 8, 8, 0.8);
+    backdrop-filter: blur(8px); /* Latar belakang menjadi blur */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10; /* Memastikan modal selalu tampil paling depan */
+    animation: fadeInModal 0.4s ease forwards;
+}
+
+.custom-modal-card {
+    background: #ffffff;
+    padding: 45px 40px 40px;
+    border-radius: 20px;
+    width: 100%; max-width: 380px;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    animation: scaleUpModal 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; /* Efek zoom-in */
+}
+
+.modal-success-icon {
+    width: 60px; height: 60px;
+    background: linear-gradient(135deg, #cfa25e, #b88a48);
+    border-radius: 50%;
+    display: flex;
+    align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    color: #ffffff;
+    font-size: 32px;
+    animation: popIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; /* Efek ikon melompat kecil */
+}
+
+/* --- Kumpulan Keyframe Animasi --- */
+@keyframes popIn {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.1); } /* Membesar sedikit melewati ukuran asli (Bounce) */
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleUpModal {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* ==================================
+   MEDIA QUERIES (Responsif HP & Tablet)
+================================== */
+@media (max-width: 1024px) {
+    .login-wrapper {
+        flex-direction: column; /* Mengubah layout bersebelahan menjadi atas-bawah */
+        height: auto;
+        min-height: 100vh;
+    }
+    .login-hero {
+        min-height: 50vh; /* Gambar mengecil jadi 50% tinggi layar HP */
+    }
+    .login-hero::before, .login-hero::after,
+    .login-form-wrapper::before, .login-form-wrapper::after {
+        display: none; /* Mematikan ornamen agar tidak memenuhi layar kecil */
+    }
+}
+
+@media (max-width: 480px) {
+    .login-hero {
+        min-height: 40vh;
+    }
+    .hero-content h1 {
+        font-size: 2rem; /* Memperkecil teks khusus HP */
+    }
+}

@@ -1,0 +1,190 @@
+/* ==================================
+   STYLING HALAMAN ABOUT US & ANIMASI
+================================== */
+.page-content {
+    background-color: #fdfdfd;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    
+    /* Mencegah layar bergeser ke samping secara horizontal saat elemen sedang melakukan animasi geser */
+    overflow-x: hidden; 
+    transition: background-color 0.3s ease;
+}
+
+/* Penyesuaian Section Utama About */
+.about-section {
+    padding: 40px 8% 30px;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+
+/* Animasi Gambar Masuk dari Kiri */
+.about-image {
+    width: 50%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    
+    /* opacity: 0 membuat gambar disembunyikan di awal sebelum animasi berjalan */
+    opacity: 0;
+    
+    /* Memindahkan posisi awal gambar ke luar layar sebelah kiri sejauh 80px */
+    transform: translateX(-80px); 
+    
+    /* Menjalankan animasi dengan kurva cubic-bezier (efek smooth) selama 1 detik */
+    animation: slideInFromLeft 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+/* Animasi Teks Masuk dari Kanan */
+.about-text {
+    width: 50%;
+    opacity: 0;
+    transform: translateX(80px); /* Posisi awal di luar layar kanan */
+    
+    /* Diberi jeda waktu (delay) 0.3 detik agar teks muncul sedikit lebih lambat dari gambar */
+    animation: slideInFromRight 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.3s forwards; 
+}
+
+.about-text h2 {
+    font-size: 34px;
+    color: #0f4c81;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+.about-text p {
+    color: #555555;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+/* ==================================
+   SECTION FITUR / KEUNGGULAN HOTEL
+================================== */
+.features-section {
+    padding: 40px 8%;
+    
+    /* Mengatur tata letak kotak fitur menggunakan Grid Responsif Otomatis */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    
+    opacity: 0;
+    transform: translateY(40px); /* Posisi awal digeser ke bawah sejauh 40px */
+    
+    /* Delay 0.6 detik agar animasi section ini muncul paling akhir secara berurutan */
+    animation: fadeInUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.6s forwards;
+}
+
+.feature-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid #cfa25e;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px); /* Efek kartu melayang ke atas saat disentuh kursor */
+    box-shadow: 0 12px 30px rgba(15, 76, 129, 0.1);
+}
+
+.feature-card h3 {
+    font-size: 20px;
+    color: #0f4c81;
+    margin-bottom: 12px;
+    transition: color 0.3s ease;
+}
+
+.feature-card p {
+    font-size: 14px;
+    color: #666666;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+/* ==================================
+   DARK MODE KHUSUS HALAMAN ABOUT
+================================== */
+body.dark-mode .page-content {
+    background-color: #0f172a;
+}
+
+body.dark-mode .about-text h2 {
+    color: #60a5fa; 
+}
+
+body.dark-mode .about-text p {
+    color: #cbd5e1; 
+}
+
+body.dark-mode .feature-card {
+    background-color: #1e293b; 
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .feature-card:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .feature-card h3 {
+    color: #60a5fa;
+}
+
+body.dark-mode .feature-card p {
+    color: #94a3b8;
+}
+
+
+/* ==================================
+   KEYFRAMES (DEFINISI ANIMASI GERAKAN)
+================================== */
+
+/* Mengembalikan elemen dari posisi kiri ke posisi normal (0) sekaligus memunculkan opacity-nya */
+@keyframes slideInFromLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Mengembalikan elemen dari posisi kanan ke posisi normal (0) */
+@keyframes slideInFromRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Mengembalikan elemen dari posisi bawah ke atas secara vertikal */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsif untuk layar HP */
+@media (max-width: 768px) {
+    .page-content {
+        padding-top: 70px;
+    }
+    .about-section {
+        flex-direction: column; /* Mengubah susunan gambar & teks menjadi atas-bawah */
+        padding-top: 20px;
+    }
+    .about-image, .about-text {
+        width: 100%;
+        transform: none; 
+        animation: fadeInUp 1s ease forwards; /* Menyeragamkan animasi menjadi dari bawah ke atas khusus HP */
+    }
+    .about-image {
+        height: 250px;
+    }
+}
