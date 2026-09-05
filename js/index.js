@@ -140,6 +140,8 @@ const updateAuthButton = () => {
     
     // Cek tema terakhir atau deteksi otomatis dari sistem perangkat
     const storedTheme = localStorage.getItem('theme');
+    // prefersDark untuk menanyakan ke perakngkat menggunkan mode apa
+    // .matches untuk menentukan nilainya bernilai true(gelap) atau false(terang) 
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     let currentTheme = storedTheme || (prefersDark ? 'dark' : 'light');
     
@@ -288,22 +290,32 @@ const populateRoomDropdown = async () => {
 /* ====================================================
    Update Dropdown Jumlah Unit
 ==================================================== */
+// Mengambil elemen dropdown pilih kamar dan dropdown jumlah unit berdasarkan ID-nya
 const roomSelectElement = document.getElementById('rooms');
 const quantitySelectElement = document.getElementById('room-quantity');
 
-// Saat tipe kamar diubah, buat ulang opsi jumlah unit sesuai sisa maxStock
+// Pastikan kedua elemen tersebut ada di halaman sebelum menjalankan event listener
 if (roomSelectElement && quantitySelectElement) {
+    // Jalankan fungsi ketika pilihan tipe kamar diubah (change)
     roomSelectElement.addEventListener('change', function() {
+        // Ambil elemen option yang sedang dipilih saat ini
         const selectedOption = this.options[this.selectedIndex];
+        
+        // Ambil nilai stok maksimum dari atribut data-maxStock, gunakan 1 jika tidak ada
         const maxStock = parseInt(selectedOption.dataset.maxStock) || 1;
 
+        // Aktifkan kembali dropdown jumlah unit dan hapus opsi sebelumnya
         quantitySelectElement.disabled = false;
         quantitySelectElement.replaceChildren();
 
+        // Buat opsi angka unit secara dinamis dari 1 sampai batas maxStock
         for (let i = 1; i <= maxStock; i++) {
             const opt = document.createElement('option');
             opt.value = i;
+            // Format teks menjadi dua digit dengan awalan nol (contoh: "01 Unit", "02 Unit")
             opt.textContent = `${String(i).padStart(2, '0')} Unit`;
+            
+            // Masukkan opsi baru ke dalam dropdown jumlah unit
             quantitySelectElement.appendChild(opt);
         }
     });
@@ -316,15 +328,16 @@ const setMinDate = () => {
     const checkInInput = document.getElementById('check-in');
     const checkOutInput = document.getElementById('check-out');
 
+    // Hentikan fungsi jika elemen input tidak ditemukan di halaman
     if (!checkInInput || !checkOutInput) return;
 
-    // Ambil tanggal hari ini format (YYYY-MM-DD)
+    // Mengambil tanggal hari ini dalam format string YYYY-MM-DD
     const getLocalDateString = () => {
         const d = new Date();
         return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     };
 
-    // Terapkan batas blokir kalender (tidak bisa pilih masa lalu)
+    // Mengatur batasan minimal tanggal (tidak boleh memilih masa lalu)
     const updateMinDate = () => {
         const todayStr = getLocalDateString();
         checkInInput.min = todayStr;
@@ -333,13 +346,13 @@ const setMinDate = () => {
 
     updateMinDate();
     
-    // Perbarui batas setiap kali user mau nge-klik input
+    // Memperbarui batas minimal kalender secara otomatis saat input disentuh/diklik
     ['focus', 'click', 'pointerdown', 'mouseenter'].forEach(eventType => {
         checkInInput.addEventListener(eventType, updateMinDate);
         checkOutInput.addEventListener(eventType, updateMinDate);
     });
 
-    // Otomatis samakan kalender Check-out jika check-in digeser
+    // Menyesuaikan otomatis batas minimal dan nilai Check-out jika tanggal Check-in diubah
     checkInInput.addEventListener('change', function() {
         checkOutInput.min = checkInInput.value;
         if (checkOutInput.value && checkOutInput.value < checkInInput.value) {
