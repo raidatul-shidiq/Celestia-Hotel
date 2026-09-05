@@ -1,6 +1,7 @@
 /* ====================================================
    1. Event Handler: Efek Scroll Navbar
 ==================================================== */
+// Menangkap elemen navbar untuk diberi efek saat halaman digulir
 const mainNavbar = document.getElementById('navbar');
 
 // Deteksi saat layar digulir (scroll)
@@ -16,6 +17,7 @@ window.addEventListener('scroll', function() {
 /* ====================================================
    Logika Tombol Header, Dropdown Profil & Mobile Sidebar
 ==================================================== */
+// Fungsi utama untuk mengatur tombol autentikasi & profil (Login/Logout)
 const updateAuthButton = () => {
     // Ambil semua elemen tombol dan dropdown yang dibutuhkan
     const authButton = document.getElementById('auth-btn');
@@ -129,7 +131,7 @@ const updateAuthButton = () => {
 /* ====================================================
    DARK / LIGHT MODE TOGGLE
 ==================================================== */
-// Fungsi ini berjalan otomatis (IIFE)
+// Fungsi ini berjalan otomatis (IIFE) untuk mengatur tema gelap/terang
 (function() {
     'use strict';
     
@@ -140,8 +142,7 @@ const updateAuthButton = () => {
     
     // Cek tema terakhir atau deteksi otomatis dari sistem perangkat
     const storedTheme = localStorage.getItem('theme');
-    // prefersDark untuk menanyakan ke perakngkat menggunkan mode apa
-    // .matches untuk menentukan nilainya bernilai true(gelap) atau false(terang) 
+    // Cek preferensi warna sistem perangkat (true = gelap, false = terang)
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     let currentTheme = storedTheme || (prefersDark ? 'dark' : 'light');
     
@@ -158,7 +159,7 @@ const updateAuthButton = () => {
         currentTheme = theme;
     }
     
-    // Balikkan tema saat ditekan
+    // Balikkan tema saat tombol ditekan
     function toggleTheme(e) {
         e.preventDefault();
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -179,6 +180,7 @@ const updateAuthButton = () => {
 /* ====================================================
    Logika Pembatasan Form Berdasarkan Login
 ==================================================== */
+// Fungsi untuk mengunci atau membuka form pemesanan berdasarkan status login
 const checkBookingAccess = () => {
     const bookingForm = document.getElementById('booking-form');
     const bookingAuthWarning = document.getElementById('booking-auth-warning');
@@ -208,6 +210,7 @@ const checkBookingAccess = () => {
 /* ====================================================
    Toggle Mobile Menu (Hamburger Sidebar)
 ==================================================== */
+// Fungsi untuk membuka/menutup menu navigasi versi 
 const mobileMenuToggle = document.getElementById('mobile-menu');
 const navMenu = document.querySelector('header nav');
 
@@ -219,7 +222,7 @@ if (mobileMenuToggle && navMenu) {
         mobileMenuToggle.classList.toggle('active'); 
     });
 
-    // Tutup sidebar jika layar luar diklik
+    // Tutup sidebar jika area luar diklik
     document.addEventListener('click', function(event) {
         if (!navMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
             navMenu.classList.remove('active');
@@ -233,6 +236,7 @@ if (mobileMenuToggle && navMenu) {
 ==================================================== */
 let globalRoomsData = [];
 
+// Mengambil data kamar dari API eksternal dan menghitung sisa stok kamar
 const populateRoomDropdown = async () => {
     const roomSelect = document.getElementById('rooms');
     if (!roomSelect) return;
@@ -290,7 +294,7 @@ const populateRoomDropdown = async () => {
 /* ====================================================
    Update Dropdown Jumlah Unit
 ==================================================== */
-// Mengambil elemen dropdown pilih kamar dan dropdown jumlah unit berdasarkan ID-nya
+// Mengatur jumlah maksimal unit yang bisa dipilih berdasarkan stok kamar yang dipilih
 const roomSelectElement = document.getElementById('rooms');
 const quantitySelectElement = document.getElementById('room-quantity');
 
@@ -324,6 +328,7 @@ if (roomSelectElement && quantitySelectElement) {
 /* ====================================================
    Validasi Tanggal Minimal (Kalender)
 ==================================================== */
+// Mencegah user memilih tanggal masa lalu pada input kalender check-in/out
 const setMinDate = () => {
     const checkInInput = document.getElementById('check-in');
     const checkOutInput = document.getElementById('check-out');
@@ -364,6 +369,7 @@ const setMinDate = () => {
 /* ====================================================
    Interaksi Detail UI Pembayaran Modal
 ==================================================== */
+// Menampilkan instruksi pembayaran sesuai metode yang dipilih user di modal
 const paymentRadios = document.querySelectorAll('input[name="payment"]');
 const cashDetails = document.getElementById('cash-details');
 const bniDetails = document.getElementById('bni-details');
@@ -412,6 +418,7 @@ let bookingData = {}; // Objek untuk menyimpan keranjang pesanan
 const formatPrice = (price) => `Rp ${price.toLocaleString('id-ID')}`;
 const showAlert = (message) => alert(`Peringatan: ${message}`);
 
+// Mengelola proses saat tombol submit form pemesanan ditekan
 if (reservationForm) {
     reservationForm.addEventListener('submit', function(event) {
         // Cegah halaman refresh (perilaku asli form)
@@ -464,7 +471,7 @@ if (reservationForm) {
     });
 }
 
-// Menata dan menampilkan data ke dalam layar struk
+// Menata dan menampilkan data ke dalam layar struk bukti pemesanan
 const displayReceipt = (data) => {
     if (!receiptDetails) return;
     receiptDetails.replaceChildren();
@@ -504,7 +511,7 @@ const finalizePayment = () => {
     displayReceipt(bookingData);
 };
 
-// Logika Klik: "Pesan Sekarang" -> Masuk Layar Loading
+// Logika Klik: "Pesan Sekarang" -> Masuk Layar Loading/Konfirmasi Pembayaran
 if (btnPay) {
     btnPay.addEventListener('click', function() {
         const selectedPayment = document.querySelector('input[name="payment"]:checked');
@@ -537,17 +544,17 @@ if (btnPay) {
     });
 }
 
-// Logika Klik: Tombol ACC Khusus Staf
+// Logika Klik: Tombol ACC Khusus Staf untuk validasi pembayaran manual
 if (btnAdminConfirm) {
     btnAdminConfirm.addEventListener('click', finalizePayment);
 }
 
-// Logika Klik: Cetak (Buka Fitur Print Browser)
+// Logika Klik: Cetak (Memicu Fitur Print Bawaan Browser)
 if (btnPrint) {
     btnPrint.addEventListener('click', () => window.print());
 }
 
-// Logika Klik: Tutup & Bersihkan Halaman
+// Logika Klik: Tutup Modal & Bersihkan Halaman
 if (btnClose) {
     btnClose.addEventListener('click', function() {
         paymentModal.style.display = 'none';
@@ -564,7 +571,7 @@ if (btnClose) {
 /* ====================================================
    Horizontal Rooms Slider & Navigasi Panah
 ==================================================== */
-// Fungsi pencetak cetakan kartu (DOM Murni)
+// Fungsi pembuat kartu kamar secara dinamis (DOM Murni)
 const createRoomCard = (room) => {
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('room-card');
@@ -607,7 +614,7 @@ const createRoomCard = (room) => {
     return cardDiv;
 };
 
-// Mengambil Data JSON dari API & Mencetak semua Kartu ke Slider
+// Mengambil Data JSON dari API & Mencetak semua Kartu ke Slider Horizontal
 const fetchHorizontalRooms = async () => {
     const sliderContainer = document.getElementById('horizontal-rooms-container');
     if (!sliderContainer) return;
