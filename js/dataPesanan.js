@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 3. FUNGSI RENDER (MENCETAK KARTU DATA)
     // ==========================================
+    // Fungsi untuk merender dan mencetak kartu daftar pesanan tamu ke layar secara dinamis
     const renderBookings = (data) => {
         bookingsContainer.replaceChildren(); // Kosongkan layar sebelum mencetak ulang
 
@@ -192,6 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 4. LOGIKA PENCARIAN REAL-TIME (FILTER)
     // ==========================================
+    // Menyaring daftar pesanan secara langsung berdasarkan ketikan nama atau nomor HP pada kolom pencarian
     searchInput.addEventListener('input', (event) => {
         const kataKunci = event.target.value.toLowerCase();
         // Saring array data berdasarkan kecocokan nama atau no HP
@@ -206,6 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 5. EVENT LISTENER: MODAL HAPUS & PELUNASAN
     // ==========================================
+    // Fungsi untuk menutup modal hapus/check-out
     const closeModal = () => {
         idToDelete = null;
         modal.classList.add('hidden-element');
@@ -214,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnModalCancel.addEventListener('click', closeModal);
 
+    // Menangani aksi konfirmasi pada modal hapus atau pelunasan tagihan saat tamu check-out
     btnModalConfirm.addEventListener('click', () => {
         if (idToDelete) {
             const checkoutWarning = document.getElementById('checkoutBillWarning');
@@ -256,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 6. EVENT LISTENER: MODAL PERPANJANG
     // ==========================================
+    // Fungsi untuk menutup modal perpanjangan masa inap kamar
     const closeExtendModal = () => {
         idToExtend = null;
         extendModal.classList.add('hidden-element');
@@ -264,6 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnExtendCancel.addEventListener('click', closeExtendModal);
 
+    // Menangani proses penghitungan biaya tambahan dan pembaruan tanggal check-out saat perpanjangan dikonfirmasi
     btnExtendConfirm.addEventListener('click', () => {
         // Validasi input tanggal baru
         if (!newCheckOutInput.value) {
@@ -328,6 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 7. EVENT LISTENER: TUTUP MODAL SUKSES & KLIK LUAR
     // ==========================================
+    // Fungsi untuk menutup modal pemberitahuan sukses
     const closeSuccessModal = () => {
         successModal.classList.add('hidden-element');
         successModal.classList.remove('show-flex-element');
@@ -345,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 8. TEMA DARK MODE (Sinkronisasi Antar Halaman)
     // ==========================================
-    // Cek apakah user sedang mengaktifkan mode gelap di halaman utama
+    // Memeriksa penyimpanan lokal untuk menyamakan tema gelap/terang secara konsisten lintas halaman web
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
     }
